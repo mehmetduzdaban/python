@@ -29,7 +29,7 @@ class MyClass(object):
         print(self.__dict__)
 
 if __name__ == "__main__":
-    obj = MyClass("aerdogan", "deneme")
-    obj.Sil() # Kayıtları sil
+    obj = MyClass("username", "description")
+    #obj.Sil() # Kayıtları sil
     obj.Ekle() # Kayıt ekle
     obj.Listele() # Kayıtları Listele
