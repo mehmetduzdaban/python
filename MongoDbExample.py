@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import datetime
 from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
 
 try:
     client = MongoClient('localhost', 27017, serverSelectionTimeoutMS=10, connectTimeoutMS=15000)
@@ -16,7 +18,7 @@ class MyClass(object):
         self.Aciklama = aciklama
     
     def Ekle(self):
-        log = db.test.insert_one(self .__dict__)
+        log = db.test.insert_one(self.__dict__)
         print(log.inserted_id, " ID Numaralı kayıt eklendi.")    
     
     def Sil(self):
