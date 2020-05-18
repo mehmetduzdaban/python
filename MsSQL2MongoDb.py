@@ -20,13 +20,13 @@ class DataTransfer(object):
             print("HATA : MongoDb Veriler Alınamadı")
 
     def MsSQLConnect(self, Server, DataBase, UserName, Password, TableName):
-        #try:
+        try:
             self.MsSQLConnection = pyodbc.connect("Driver={SQL Server Native Client 11.0};Server="+Server+";Database="+DataBase+";uid="+UserName+";pwd="+Password)
             sqlCur = self.MsSQLConnection.cursor()
             sqlCur.execute("select * from " + TableName)
             return sqlCur.fetchall()
-        #except:
-        #    print("HATA : MsSQL Veriler Alınamadı")
+        except:
+            print("HATA : MsSQL Veriler Alınamadı")
 
     def TabloAktar(self, data, MongoTable):
         odbcArray = []
