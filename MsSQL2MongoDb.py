@@ -17,7 +17,7 @@ class DataTransfer(object):
             db = self.MongoConnection[dbname]
             return db[collection]
         except:
-            print("HATA : MongoDb Veriler Alınamadı")
+            print("Error : Can't get MongoDb data")
 
     def MsSQLConnect(self, Server, DataBase, UserName, Password, TableName):
         try:
@@ -26,9 +26,9 @@ class DataTransfer(object):
             sqlCur.execute("select * from " + TableName)
             return sqlCur.fetchall()
         except:
-            print("HATA : MsSQL Veriler Alınamadı")
+            print("Error : Can't MsSQL data")
 
-    def TabloAktar(self, data, MongoTable):
+    def TransferTable(self, data, MongoTable):
         odbcArray = []
         for tuple in data:
             doc = collections.OrderedDict()
@@ -40,7 +40,7 @@ class DataTransfer(object):
 
         MongoTable.insert_many(odbcArray)
 
-    def TabloSil(self, MongoTable):
+    def DeleteData(self, MongoTable):
         MongoTable.delete_many({})
 
     def Disconnect(self):
@@ -52,7 +52,7 @@ MyObj = DataTransfer()
 MsSQL = MyObj.MsSQLConnect( "192.168.1.2","msdatabase","username","password","mstable")
 Mongo = MyObj.MongoDbConnect("localhost", 27017, "mongotest","test")
 
-#MyObj.TabloSil(Mongo)   # MongoDB Tablosunu boşaltır
-MyObj.TabloAktar(MsSQL, Mongo) # MSSQL'deki verileri MongoDB'ye aktarır 
+#MyObj.DeleteData(Mongo)   # Clear MongoDB Table)
+MyObj.TransferTable(MsSQL, Mongo) # 'Transfer MSSQL Data to MongoDB 
 
 MyObj.Disconnect()
