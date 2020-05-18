@@ -29,16 +29,16 @@ class DataTransfer(object):
             print("Error : Can't MsSQL data")
 
     def TransferTable(self, data, MongoTable):
-        odbcArray = []
+        dataArray = []
         for tuple in data:
             doc = collections.OrderedDict()
             id = 0
             for item in data[0].cursor_description:
                 doc[item[0]] = tuple[id]
                 id += 1
-            odbcArray.append(doc)
+            dataArray.append(doc)
 
-        MongoTable.insert_many(odbcArray)
+        MongoTable.insert_many(dataArray)
 
     def DeleteData(self, MongoTable):
         MongoTable.delete_many({})
@@ -53,6 +53,6 @@ MsSQL = MyObj.MsSQLConnect( "192.168.1.2","msdatabase","username","password","ms
 Mongo = MyObj.MongoDbConnect("localhost", 27017, "mongotest","test")
 
 #MyObj.DeleteData(Mongo)   # Clear MongoDB Table)
-MyObj.TransferTable(MsSQL, Mongo) # 'Transfer MSSQL Data to MongoDB 
+MyObj.TransferTable(MsSQL, Mongo) #Transfer MSSQL Data to MongoDB 
 
 MyObj.Disconnect()
