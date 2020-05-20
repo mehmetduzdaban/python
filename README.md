@@ -1,5 +1,5 @@
-<b>MsSQL2MongoDb.py</b> - MSSQL verilerini MongoDB veritabanına aktarım scripti
-mongodb ve mssql bağlantısı için aşağıdaki kurulumları gerektirir
+<b>MsSQL2MongoDb.py</b> Copy MSSQL table and data to MongoDB Server 
+requirements for mongodb and mssql connection 
 
 <b>pip install pymongo</b>
 
@@ -7,7 +7,7 @@ mongodb ve mssql bağlantısı için aşağıdaki kurulumları gerektirir
 
 <hr>
 
-<b>MongoDbExample.py</b> MongoDB veritabanına kayıt ekleme, silme ve listeleme scripti
-mongodb bağlantısı için aşağıdaki kurulumu gerektirir
+<b>MongoDbExample.py</b> simple MongoDB add, delete and listing data script
+requirements for mongodb connection 
 
 <b>pip install pymongo</b>
