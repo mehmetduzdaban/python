@@ -9,27 +9,27 @@ try:
     client = MongoClient('localhost', 27017, serverSelectionTimeoutMS=10, connectTimeoutMS=15000)
     db = client.mongotest
 except ConnectionFailure:
-    print("MongoDb Sunucusuna Bağlanılamadı")
+    print("Error : MongoDb Server Connection Failure")
 
 class MyClass(object):
-    def __init__(self, olusturan, aciklama):
-        self.Tarih = str(datetime.datetime.now())
-        self.Olusturan = olusturan
-        self.Aciklama = aciklama
+    def __init__(self, author, description):
+        self.Date = str(datetime.datetime.now())
+        self.Author = author
+        self.Description = description
     
-    def Ekle(self):
+    def Add(self):
         log = db.test.insert_one(self.__dict__)
-        print(log.inserted_id, " ID Numaralı kayıt eklendi.")    
+        print("ID : ", log.inserted_id, " - Record Added.")    
     
-    def Sil(self):
+    def Delete(self):
         log = db.test.delete_many({})
-        print(log.deleted_count, " Adet kayıt silindi.")
+        print(log.deleted_count, " Record Deleted.")
 
-    def Listele(self):
+    def List(self):
         print(self.__dict__)
 
 if __name__ == "__main__":
-    obj = MyClass("username", "description")
-    #obj.Sil() # Kayıtları sil
-    obj.Ekle() # Kayıt ekle
-    obj.Listele() # Kayıtları Listele
+    obj = MyClass("author name", "description")
+    #obj.Delete() # Delete Records
+    obj.Add() # Add One Record
+    obj.List() # List Records

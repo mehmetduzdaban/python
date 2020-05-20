@@ -17,7 +17,7 @@ class DataTransfer(object):
             db = self.MongoConnection[dbname]
             return db[collection]
         except:
-            print("Error : Can't get MongoDb data")
+            print("Error : MongoDb Server Connection failure")
 
     def MsSQLConnect(self, Server, DataBase, UserName, Password, TableName):
         try:
@@ -26,9 +26,9 @@ class DataTransfer(object):
             sqlCur.execute("select * from " + TableName)
             return sqlCur.fetchall()
         except:
-            print("Error : Can't MsSQL data")
+            print("Error : MsSQL Server Connection failure")
 
-    def TransferTable(self, data, MongoTable):
+    def CopyTable(self, data, MongoTable):
         dataArray = []
         for tuple in data:
             doc = collections.OrderedDict()
@@ -49,10 +49,10 @@ class DataTransfer(object):
 
 MyObj = DataTransfer()
 
-MsSQL = MyObj.MsSQLConnect( "192.168.1.2","msdatabase","username","password","mstable")
+MsSQL = MyObj.MsSQLConnect( "serverip","msdatabase","username","password","mstable")
 Mongo = MyObj.MongoDbConnect("localhost", 27017, "mongotest","test")
 
-#MyObj.DeleteData(Mongo)   # Clear MongoDB Table)
-MyObj.TransferTable(MsSQL, Mongo) #Transfer MSSQL Data to MongoDB 
+#MyObj.DeleteData(Mongo)   # Clear MongoDB Table
+MyObj.CopyTable(MsSQL, Mongo) #Copy MSSQL Table to MongoDB 
 
 MyObj.Disconnect()
