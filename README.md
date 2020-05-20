@@ -1,4 +1,4 @@
-<b>MsSQL2MongoDb.py</b> Copy MSSQL table and data to MongoDB Server 
+<b>MsSQL2MongoDb.py</b> Copy MSSQL table and data to MongoDB Server <br/>
 requirements for mongodb and mssql connection 
 
 <b>pip install pymongo</b>
@@ -7,7 +7,7 @@ requirements for mongodb and mssql connection
 
 <hr>
 
-<b>MongoDbExample.py</b> simple MongoDB add, delete and listing data script
+<b>MongoDbExample.py</b> simple MongoDB add, delete and listing data script<br/>
 requirements for mongodb connection 
 
 <b>pip install pymongo</b>
