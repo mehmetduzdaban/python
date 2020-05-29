@@ -11,3 +11,8 @@ requirements for mongodb and mssql connection
 requirements for mongodb connection 
 
 <b>pip install pymongo</b>
+
+<b>RedisExample.py</b> simple Redis add, delete and get data script<br/>
+requirements for Redis connection 
+
+<b>pip install redis</b>
