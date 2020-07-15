@@ -19,11 +19,11 @@ class MyClass(object):
     
     def Add(self):
         log = db.test.insert_one(self.__dict__)
-        print("ID : ", log.inserted_id, " - Record Added.")    
+        print(f"ID : { log.inserted_id } - Record Added.")    
     
     def Delete(self):
         log = db.test.delete_many({})
-        print(log.deleted_count, " Record Deleted.")
+        print(f"{ log.deleted_count} Record Deleted.")
 
     def List(self):
         print(self.__dict__)
